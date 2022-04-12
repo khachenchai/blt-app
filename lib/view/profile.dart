@@ -28,7 +28,7 @@ class _ProfliePageState extends State<ProfliePage> {
       if (value.exists) {
         setState(() {
           nameText = value.data()?["name"];
-          idText = value.data()?["id"];
+          idText = value.data()?["password"];
         });
       }
     });
@@ -65,17 +65,54 @@ class _ProfliePageState extends State<ProfliePage> {
                 centerTitle: true,
               ),
               body: SafeArea(
-                child: SizedBox(
-                  child: Center(
-                    child: Text("${nameText} : ${idText}", style: GoogleFonts.ubuntu(fontSize: 30)),
-                  ),
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(8, 20, 8, 0),
+                  children: [
+                    Card(
+                      elevation: 6,
+                      child: SizedBox(
+                        // color: Colors.green,
+                        height: 150,
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Row(
+                            children: [
+                              const CircleAvatar(
+                                backgroundColor: Colors.orange,
+                                minRadius: 50,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Text(nameText, style: GoogleFonts.ubuntu(fontSize: 26, fontWeight: FontWeight.bold)),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    ExpansionTile(
+                      title: Text("ประวัติการจอง", style: GoogleFonts.kanit(fontSize: 25, fontWeight: FontWeight.bold)),
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.history, size: 36),
+                          title: Text("Aroi",style: GoogleFonts.kanit(fontSize: 20, fontWeight: FontWeight.w500)),
+                          subtitle: Text("12/4/2022",style: GoogleFonts.kanit(fontSize: 16)),
+                        )
+                      ],
+                      textColor: Colors.black,
+                    )
+                  ],
                 ),
               ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const AddShopPage()));
-                },
-              ),
+              // floatingActionButton: FloatingActionButton(
+              //   onPressed: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context) => const AddShopPage()));
+              //   },
+              // ),
             ),
           );
         }
