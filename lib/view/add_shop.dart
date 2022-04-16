@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:bunlungthong/models/shop-model.dart';
+import 'package:bunlungthong/models/shop_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -51,6 +52,7 @@ class _AddShopPageState extends State<AddShopPage> {
                   allSeatsFormFeild(),
                   const SizedBox(height: 30),
                   pickImage(context),
+                  // const SizedBox(height: 30),
                   const SizedBox(height: 50),
                   SizedBox(
                     width: double.infinity,
@@ -130,7 +132,7 @@ class _AddShopPageState extends State<AddShopPage> {
       },
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        labelText: 'Location (Google map)',
+        labelText: 'Location (Google map link)',
         hintText: 'โปรดกรอกลิ้ง Google map ของร้านท่าน',
         icon: const Icon(Icons.add_location_alt, color: Colors.black),
         labelStyle: GoogleFonts.ubuntu(color: Colors.black),
@@ -160,10 +162,13 @@ class _AddShopPageState extends State<AddShopPage> {
     return TextFormField(
       validator: RequiredValidator(errorText: 'กรุณากรอกเบอร์โทรศัพท์ด้วยครับ'),
       onSaved: (String? phone) {
-        shop.phoneNumber= phone;
+        shop.phoneNumber = phone;
       },
       obscureText: true,
       keyboardType: TextInputType.number,
+      inputFormatters: <TextInputFormatter>[
+        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+      ],
       decoration: InputDecoration(
         labelText: 'Phone number',
         hintText: 'โปรดกรอกเบอร์โทรศัพท์',
@@ -197,13 +202,13 @@ class _AddShopPageState extends State<AddShopPage> {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconButton(onPressed: () {chooseImage(ImageSource.camera);}, icon: const Icon(Icons.add_a_photo, size: 30)),
+        IconButton(onPressed: () {chooseImage(ImageSource.camera);}, icon: const Icon(Icons.add_a_photo, size: 36)),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 30),
           width: MediaQuery.of(context).size.width * 0.5,
           child: imageFile == null ? Image.asset('assets/img/logo-no-bg.png') : Image.file(imageFile!),
         ),
-        IconButton(onPressed: () => chooseImage(ImageSource.gallery), icon: const Icon(Icons.add_photo_alternate, size: 30)),
+        IconButton(onPressed: () => chooseImage(ImageSource.gallery), icon: const Icon(Icons.add_photo_alternate, size: 36)),
       ]
     );
   }
@@ -212,8 +217,8 @@ class _AddShopPageState extends State<AddShopPage> {
       try {
         var result = await ImagePicker().pickImage(
           source: source,
-          maxHeight: 800,
-          maxWidth: 800
+          maxHeight: 500,
+          maxWidth: 500
         );
         setState(() {
           imageFile = File(result!.path);
@@ -230,4 +235,3 @@ Future createShop(shop, uid) async {
     final json = shop.toJson();
     await docShop.set(json);
 }
-

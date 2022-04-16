@@ -1,4 +1,4 @@
-import 'package:bunlungthong/models/user-model.dart';
+import 'package:bunlungthong/models/user_model.dart';
 import 'package:bunlungthong/view/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
   UserModel profile = UserModel();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
+  bool statusRedEye = true;
 
   @override
   Widget build(BuildContext context) {
@@ -146,13 +147,22 @@ class _LoginPageState extends State<LoginPage> {
       onSaved: (String? password) {
         profile.password = password;
       },
-      obscureText: true,
+      obscureText: statusRedEye,
       decoration: InputDecoration(
         labelText: 'Password',
         hintText: 'โปรดกรอกรหัสผ่านของท่าน',
         icon: const Icon(Icons.lock, color: Colors.black),
         labelStyle: GoogleFonts.ubuntu(color: Colors.black),
-        hintStyle: GoogleFonts.kanit()
+        hintStyle: GoogleFonts.kanit(),
+        suffixIcon: IconButton(
+          onPressed: () {
+            setState(() {
+              statusRedEye = !statusRedEye;
+              print("status : $statusRedEye");
+            });
+          }, 
+          icon: statusRedEye ? const Icon(Icons.remove_red_eye_outlined, size: 28, color: Colors.black) : const Icon(Icons.remove_red_eye, size: 28, color: Colors.blue),
+        ),
       ),
     );
   }

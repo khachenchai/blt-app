@@ -1,5 +1,5 @@
 import 'package:bunlungthong/view/login.dart';
-import 'package:bunlungthong/view/sign-up.dart';
+import 'package:bunlungthong/view/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

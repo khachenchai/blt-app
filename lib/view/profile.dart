@@ -108,11 +108,11 @@ class _ProfliePageState extends State<ProfliePage> {
                   ],
                 ),
               ),
-              // floatingActionButton: FloatingActionButton(
-              //   onPressed: () {
-              //     Navigator.push(context, MaterialPageRoute(builder: (context) => const AddShopPage()));
-              //   },
-              // ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const AddShopPage()));
+                },
+              ),
             ),
           );
         }

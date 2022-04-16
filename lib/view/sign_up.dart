@@ -1,4 +1,4 @@
-import 'package:bunlungthong/models/user-model.dart';
+import 'package:bunlungthong/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,6 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>();
   UserModel profile = UserModel();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
+  bool statusRedEye = true;
   // final CollectionReference _userProfileCollection = FirebaseFirestore.instance.collection("users");
 
 
@@ -176,13 +177,21 @@ class _SignUpPageState extends State<SignUpPage> {
       onSaved: (String? password) {
         profile.password = password;
       },
-      obscureText: true,
+      obscureText: statusRedEye,
       decoration: InputDecoration(
         labelText: 'Password',
         hintText: 'โปรดกรอกรหัสผ่านของท่าน',
         icon: const Icon(Icons.lock, color: Colors.black),
         labelStyle: GoogleFonts.ubuntu(color: Colors.black),
-        hintStyle: GoogleFonts.kanit()
+        hintStyle: GoogleFonts.kanit(),
+        suffixIcon: IconButton(
+          icon: statusRedEye ? const Icon(Icons.remove_red_eye_outlined, color: Colors.black, size: 28) : const Icon(Icons.remove_red_eye, color: Colors.blue, size: 28),
+          onPressed: () {
+            setState(() {
+              statusRedEye = !statusRedEye;
+            });
+          },
+        )
       ),
     );
   }

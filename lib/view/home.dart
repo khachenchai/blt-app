@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                 ShopList(name: "name"),
                 ShopList(name: "name"),
                 ShopList(name: "name"),
-                ShopList(name: "name"),
+                ShopList(name: "nme"),
                 ShopList(name: "name"),
               ],
             ),

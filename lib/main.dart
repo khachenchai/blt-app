@@ -1,8 +1,10 @@
 import 'package:bunlungthong/view/authen.dart';
+import 'package:bunlungthong/view/book.dart';
 import 'package:bunlungthong/view/home.dart';
-import 'package:bunlungthong/view/sign-up.dart';
+import 'package:bunlungthong/view/sign_up.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +23,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.amber,
+        textTheme: GoogleFonts.kanitTextTheme(
+          Theme.of(context).textTheme
+        )
       ),
-      home: const AuthenPage(),
+      home: const BookPage(),
     );
   }
 }
