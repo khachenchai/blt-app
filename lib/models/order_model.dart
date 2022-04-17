@@ -4,8 +4,9 @@ class OrderModel {
   late DateTime bookingTime;
   late String orderId;
   late String shopId;
+  late String? detail;
 
-  OrderModel({required this.seatNumber, required this.bookerId, required this.bookingTime, required this.orderId, required this.shopId});
+  OrderModel({required this.seatNumber, required this.bookerId, required this.bookingTime, required this.orderId, required this.shopId, this.detail});
 
   Map<String, dynamic> toJson() => {
     'seatNumber' : seatNumber,

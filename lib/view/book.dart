@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BookPage extends StatefulWidget {
   const BookPage({ Key? key }) : super(key: key);
@@ -13,7 +14,6 @@ class _BookPageState extends State<BookPage> {
   final formKey = GlobalKey<FormState>();
   DateTime dateTime = DateTime.now();
   
-
   @override
   Widget build(BuildContext context) {
     final hours = dateTime.hour.toString().padLeft(2, '0');
@@ -48,8 +48,9 @@ class _BookPageState extends State<BookPage> {
                 children: [
                   const Text("อร่อยโภชนา", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
                   ElevatedButton.icon(
-                    onPressed: () {
+                    onPressed: () async {
                       print("Calling");
+                      launch('tel://0953163103');
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF94FF98)),
@@ -135,7 +136,7 @@ class _BookPageState extends State<BookPage> {
                           )
                         ],
                       ),
-                      Text("วันที่จอง : ${dateTime.day}/${dateTime.month}/${dateTime.year + 543}, เวลา : $hours:$minutes น.", style: TextStyle(fontSize: 20)),
+                      Text("วันที่จอง : ${dateTime.day}/${dateTime.month}/${dateTime.year + 543}, เวลา : $hours:$minutes น.", style: const TextStyle(fontSize: 20)),
                       const SizedBox(height: 10),
                       const Divider(thickness: 3),
                       const SizedBox(height: 10),
@@ -148,6 +149,7 @@ class _BookPageState extends State<BookPage> {
                             print("Order");
                           },
                           style: ButtonStyle(
+                            // elevation: MaterialStateProperty.all<double>(0),
                             backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFFE600))
                           ), 
                           child: const Text("จอง", style: TextStyle(fontSize: 36),),
