@@ -1,6 +1,7 @@
+import 'package:bunlungthong/view/book.dart';
 import 'package:bunlungthong/view/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,11 +16,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            title: Text(
-              'Home Page',
-              style:
-                  GoogleFonts.ubuntu(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
+            title: const Text('ร้านอาหาร', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             centerTitle: true,
             toolbarHeight: 65,
             actions: [
@@ -49,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                         },
                         icon: const Icon(
                           Icons.search_outlined,
-                          size: 32,
+                          size: 36,
                           color: Colors.black,
                         )),
                   ),
@@ -82,6 +79,7 @@ class ShopList extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           print("Tile");
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const BookPage()));
         },
         style: ButtonStyle(
             backgroundColor:
@@ -89,17 +87,10 @@ class ShopList extends StatelessWidget {
             elevation: MaterialStateProperty.all<double>(0)),
         child: ListTile(
           title: Text(name!,
-              style: GoogleFonts.ubuntu(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 20)),
-          // subtitle: Expanded(
-          //   child: Text(address!,
-          //       overflow: TextOverflow.ellipsis,
-          //       maxLines: 1,
-          //       style: GoogleFonts.ubuntu(fontSize: 15)),
-          // ),
           leading: const Icon(Icons.restaurant, size: 36),
-          trailing:
-              const Icon(Icons.arrow_right, size: 40, color: Color(0xFF366C00)),
+          trailing: const Icon(Icons.arrow_right, size: 40, color: Color(0xFF366C00)),
         ),
       ),
     );

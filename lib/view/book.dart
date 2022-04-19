@@ -24,7 +24,7 @@ class _BookPageState extends State<BookPage> {
         title: Text("Booking", style: GoogleFonts.kanit(fontSize: 26)),
         centerTitle: true,
       ),
-      backgroundColor: const Color(0xFFFFFAF1),
+      backgroundColor: const Color(0xFFFFFDF9),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
@@ -62,7 +62,6 @@ class _BookPageState extends State<BookPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              
               const ReadMoreText(
                 "รายละเอียด : Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat dignissimos mollitia vitae id impedit! Excepturi nihil quibusdam cupiditate quisquam accusantium?", 
                 style: TextStyle(fontSize: 18, color: Colors.black45),
