@@ -69,18 +69,25 @@ class _ProfliePageState extends State<ProfliePage> {
                   padding: const EdgeInsets.fromLTRB(8, 20, 8, 0),
                   children: [
                     Card(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(16))
+                      ),
                       elevation: 6,
                       child: SizedBox(
-                        // color: Colors.green,
                         height: 150,
                         width: double.infinity,
                         child: Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             children: [
-                              const CircleAvatar(
-                                backgroundColor: Colors.orange,
-                                minRadius: 50,
+                              InkWell(
+                                onTap: () {
+                                  changeProfileImage();
+                                },
+                                child: const CircleAvatar(
+                                  backgroundColor: Colors.orange,
+                                  minRadius: 50,
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 30),
@@ -125,6 +132,8 @@ class _ProfliePageState extends State<ProfliePage> {
     );
   }
 
-
+  Future<void> changeProfileImage() async {
+    print("Change Image");
+  }
   
 }

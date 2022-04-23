@@ -52,7 +52,6 @@ class _AddShopPageState extends State<AddShopPage> {
                   allSeatsFormFeild(),
                   const SizedBox(height: 30),
                   pickImage(context),
-                  // const SizedBox(height: 30),
                   const SizedBox(height: 50),
                   SizedBox(
                     width: double.infinity,
@@ -68,7 +67,7 @@ class _AddShopPageState extends State<AddShopPage> {
                           Uuid uid = const Uuid();
                           var uid4 = uid.v4();
                           print("Adding shop");
-                          final shop_config = ShopModel(
+                          final shopConfig = ShopModel(
                             shopName: shop.shopName,
                             description: shop.description,
                             shopAddress: shop.shopAddress,
@@ -77,7 +76,7 @@ class _AddShopPageState extends State<AddShopPage> {
                             id: uid4
                           );
                           print("name = ${shop.shopName}");
-                          createShop(shop_config, uid4);
+                          createShop(shopConfig, uid4);
                           formKey.currentState!.reset();
                         }
                       },
@@ -126,7 +125,7 @@ class _AddShopPageState extends State<AddShopPage> {
 
   TextFormField locationFormFeild() {
     return TextFormField(
-      validator: RequiredValidator(errorText: 'กรุณากรอกที่อยู่ของร้านด้วยครับ'),
+      validator: RequiredValidator(errorText: 'กรุณากรอกลิ้งค์ที่อยู่ของร้านด้วยครับ'),
       onSaved: (String? address) {
         shop.shopAddress = address;
       },
@@ -147,7 +146,6 @@ class _AddShopPageState extends State<AddShopPage> {
       onSaved: (String? description) {
         shop.description = description;
       },
-      obscureText: true,
       decoration: InputDecoration(
         labelText: 'Description',
         hintText: 'โปรดกรอกรายละเอียด',
@@ -164,7 +162,6 @@ class _AddShopPageState extends State<AddShopPage> {
       onSaved: (String? phone) {
         shop.phoneNumber = phone;
       },
-      obscureText: true,
       keyboardType: TextInputType.number,
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -186,7 +183,6 @@ class _AddShopPageState extends State<AddShopPage> {
       onSaved: (String? amount) {
         shop.allSeats = amount;
       },
-      obscureText: true,
       decoration: InputDecoration(
         labelText: 'Amount of your seats',
         hintText: 'โปรดกรอกจำนวนที่นั่งทั้งหมด',

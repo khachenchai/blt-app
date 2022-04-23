@@ -21,6 +21,12 @@ class _LoginPageState extends State<LoginPage> {
   bool statusRedEye = true;
 
   @override
+  void initState() {
+    
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: firebase,
@@ -78,23 +84,22 @@ class _LoginPageState extends State<LoginPage> {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
                               print("Sign In");
-                              FirebaseAuth.instance.signInWithEmailAndPassword(
-                                email: profile.email!, 
-                                password: profile.password!
-                              );
+                              // FirebaseAuth.instance.signInWithEmailAndPassword(
+                              //   email: profile.email!, 
+                              //   password: profile.password!
+                              // );
                               checkUser(profile.email!, profile.password!);
+                              // signIn();
                               formKey.currentState!.reset();
                             }
                           },
                         ),
                       )
-                      // idFormFeild(),
                     ],
                   ),
                 ),
               ),
             ),
-            
           );
         }
         return const Scaffold(
@@ -189,5 +194,14 @@ class _LoginPageState extends State<LoginPage> {
     auth.then((value) => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomePage()), (route) => false));
 
   }
+
+  // Future signIn() async {
+  //   await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //     email: profile.email!.trim(), 
+  //     password: profile.password!.trim()
+  //   );
+
+  //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomePage()), (route) => false);
+  // }
 }
 
