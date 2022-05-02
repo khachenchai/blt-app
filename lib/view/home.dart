@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 255, 244, 224),
           appBar: AppBar(
             title: const Text('ร้านอาหาร', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             centerTitle: true,
@@ -85,12 +86,19 @@ class ShopList extends StatelessWidget {
             backgroundColor:
                 MaterialStateProperty.all<Color>(Colors.transparent),
             elevation: MaterialStateProperty.all<double>(0)),
-        child: ListTile(
-          title: Text(name!,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 20)),
-          leading: const Icon(Icons.restaurant, size: 36),
-          trailing: const Icon(Icons.arrow_right, size: 40, color: Color(0xFF366C00)),
+        child: Card(
+          child: SizedBox(
+            height: 70,
+            child: Center(
+              child: ListTile(
+                title: Text(name!,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20)),
+                leading: const Icon(Icons.restaurant, size: 36),
+                trailing: const Icon(Icons.arrow_right, size: 40, color: Color(0xFF366C00)),
+              ),
+            ),
+          ),
         ),
       ),
     );

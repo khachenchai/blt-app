@@ -6,10 +6,10 @@ class ShopModel {
   late final dynamic description;
   late final dynamic imagePath;
   // late final List<dynamic>? imageDetails;
-  late final dynamic allSeats;
+  late final dynamic allTables;
   late final dynamic phoneNumber;
-  late final dynamic selectedSeats;
-  late final List<dynamic>? eachSeat;
+  late final dynamic selectedTables;
+  late final List<dynamic>? eachTable;
 
   ShopModel({this.id, 
     this.shopName,
@@ -18,9 +18,9 @@ class ShopModel {
     this.description,
     this.imagePath,
     this.phoneNumber,
-    this.allSeats,
-    this.selectedSeats,
-    this.eachSeat});
+    this.allTables,
+    this.selectedTables,
+    this.eachTable});
 
   Map<String, dynamic> toJson() => {
     'id' : id,
@@ -29,21 +29,21 @@ class ShopModel {
     'loction': location,
     'imagePath': imagePath,
     'phoneNumber' : phoneNumber,
-    'allSeats': allSeats,
-    'selectedSeats': selectedSeats,
-    'eachSeat' : eachSeat,
+    'allTables': allTables,
+    'selectedTables': selectedTables,
+    'eachTable' : eachTable,
   };
 
   static ShopModel fromJson(Map<String, dynamic> json) => ShopModel(
     id: json['id'],
-    allSeats: json['allSeats'],
+    allTables: json['allTables'],
     description: json['description'],
     phoneNumber: json['phoneNumber'],
     imagePath: json['imagePath'],
     location: json['location'],
-    selectedSeats: json['selectedSeats'],
+    selectedTables: json['selectedTables'],
     shopAddress: json['shopAddress'],
     shopName: json['shopName'],
-    eachSeat: json['eachSeat']
+    eachTable: json['eachTable']
   );
 }

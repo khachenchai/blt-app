@@ -63,7 +63,7 @@ class _AddShopPageState extends State<AddShopPage> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          int allOfSeats = int.parse(shop.allSeats);
+                          int allOfSeats = int.parse(shop.allTables);
                           Uuid uid = const Uuid();
                           var uid4 = uid.v4();
                           print("Adding shop");
@@ -72,7 +72,7 @@ class _AddShopPageState extends State<AddShopPage> {
                             description: shop.description,
                             shopAddress: shop.shopAddress,
                             location: shop.location,
-                            allSeats: allOfSeats,
+                            allTables: allOfSeats,
                             id: uid4
                           );
                           print("name = ${shop.shopName}");
@@ -179,13 +179,13 @@ class _AddShopPageState extends State<AddShopPage> {
   TextFormField allSeatsFormFeild() {
     return TextFormField(
       keyboardType: TextInputType.number,
-      validator: RequiredValidator(errorText: 'กรุณากรอกจำนวนที่นั่งทั้งหมดด้วยครับ'),
+      validator: RequiredValidator(errorText: 'กรุณากรอกจำนวนโต๊ะทั้งหมดด้วยครับ'),
       onSaved: (String? amount) {
-        shop.allSeats = amount;
+        shop.allTables = amount;
       },
       decoration: InputDecoration(
-        labelText: 'Amount of your seats',
-        hintText: 'โปรดกรอกจำนวนที่นั่งทั้งหมด',
+        labelText: 'Amount of your tables',
+        hintText: 'โปรดกรอกจำนวนโต๊ะทั้งหมด',
         icon: const Icon(Icons.table_bar, color: Colors.black),
         labelStyle: GoogleFonts.ubuntu(color: Colors.black),
         hintStyle: GoogleFonts.kanit()
