@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 
+import 'package:bunlungthong/api/firebase_api.dart';
 import 'package:bunlungthong/models/shop_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -64,24 +66,25 @@ class _AddShopPageState extends State<AddShopPage> {
                         child: Text("Add", style: GoogleFonts.ubuntu(fontSize: 22, fontWeight: FontWeight.w600)),
                       ),
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          int allOfSeats = int.parse(shop.allTables);
-                          Uuid uid = const Uuid();
-                          var uid4 = uid.v4();
-                          print("Adding shop");
-                          final shopConfig = ShopModel(
-                            shopName: shop.shopName,
-                            description: shop.description,
-                            shopAddress: shop.shopAddress,
-                            location: shop.location,
-                            allTables: allOfSeats,
-                            id: uid4
-                          );
-                          print("name = ${shop.shopName}");
-                          createShop(shopConfig, uid4);
-                          formKey.currentState!.reset();
-                        }
+                        // if (formKey.currentState!.validate()) {
+                        //   formKey.currentState!.save();
+                        //   int allOfSeats = int.parse(shop.allTables);
+                        //   Uuid uid = const Uuid();
+                        //   var uid4 = uid.v4();
+                        //   print("Adding shop");
+                        //   final shopConfig = ShopModel(
+                        //     shopName: shop.shopName,
+                        //     description: shop.description,
+                        //     shopAddress: shop.shopAddress,
+                        //     location: shop.location,
+                        //     allTables: allOfSeats,
+                        //     id: uid4
+                        //   );
+                        //   print("name = ${shop.shopName}");
+                        //   createShop(shopConfig, uid4);
+                        //   formKey.currentState!.reset();
+                        // }
+                        uploadImage();
                       },
                     ),
                   ),
@@ -212,16 +215,18 @@ class _AddShopPageState extends State<AddShopPage> {
     );
   }
 
-  Future<void> uploadImage() async {
-    
+  Future uploadImage() async {
+
     Random random = Random();
     int i = random.nextInt(100000);
 
-    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    Reference storageReference = firebaseStorage.ref().child('img/shopImg$i.png');
-    // UploadTask storageUploadTask = storageReference.putFile(imageFile!);
+    if (imageFile == null) return;
 
-    urlImage = await storageReference.getDownloadURL();
+    // final name = basename();
+    final destination = 'img/image$i';
+
+    await FirebaseApi.uploadImage(destination, imageFile!);
+
   }
 
   Future<Null> chooseImage(ImageSource source) async {
