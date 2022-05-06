@@ -1,23 +1,23 @@
-class SeatModel {
+class TableModel {
   late String shopId;
-  late String seatId;
+  late String tableId;
   late bool status;
   late String bookerId;
   late DateTime bookingTime;
 
-  SeatModel({required this.shopId, required this.seatId, required this.status, required this.bookerId, required this.bookingTime});
+  TableModel({required this.shopId, required this.tableId, required this.status, required this.bookerId, required this.bookingTime});
 
   Map<String, dynamic> toJson() => {
     'shopId' : shopId,
-    'seatId' : seatId,
+    'seatId' : tableId,
     'status' : status,
     'bookerId' : bookerId,
     'bookingTime' : bookingTime
   };
 
-  static SeatModel fromJson(Map<String, dynamic> json) => SeatModel(
+  static TableModel fromJson(Map<String, dynamic> json) => TableModel(
     shopId: json['shopId'],
-    seatId: json['seatId'],
+    tableId: json['tableId'],
     status: json['status'],
     bookerId: json['bookerId'],
     bookingTime: json['bookingTime']

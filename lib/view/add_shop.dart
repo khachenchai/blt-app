@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bunlungthong/models/shop_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,6 +9,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AddShopPage extends StatefulWidget {
   const AddShopPage({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class _AddShopPageState extends State<AddShopPage> {
   final formKey = GlobalKey<FormState>();
   ShopModel shop = ShopModel();
   File? imageFile;
+  String? urlImage;
 
   @override
   Widget build(BuildContext context) {
@@ -209,6 +212,18 @@ class _AddShopPageState extends State<AddShopPage> {
     );
   }
 
+  Future<void> uploadImage() async {
+    
+    Random random = Random();
+    int i = random.nextInt(100000);
+
+    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+    Reference storageReference = firebaseStorage.ref().child('img/shopImg$i.png');
+    // UploadTask storageUploadTask = storageReference.putFile(imageFile!);
+
+    urlImage = await storageReference.getDownloadURL();
+  }
+
   Future<Null> chooseImage(ImageSource source) async {
       try {
         var result = await ImagePicker().pickImage(
@@ -231,3 +246,4 @@ Future createShop(shop, uid) async {
     final json = shop.toJson();
     await docShop.set(json);
 }
+

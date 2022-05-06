@@ -75,28 +75,26 @@ class ShopList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(2),
-      child: ElevatedButton(
-        onPressed: () {
-          print("Tile");
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const BookPage()));
-        },
-        style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all<Color>(Colors.transparent),
-            elevation: MaterialStateProperty.all<double>(0)),
-        child: Card(
-          child: SizedBox(
-            height: 70,
-            child: Center(
-              child: ListTile(
-                title: Text(name!,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20)),
-                leading: const Icon(Icons.restaurant, size: 36),
-                trailing: const Icon(Icons.arrow_right, size: 40, color: Color(0xFF366C00)),
-              ),
+    return ElevatedButton(
+      onPressed: () {
+        print("Tile");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const BookPage()));
+      },
+      style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(Colors.transparent),
+          elevation: MaterialStateProperty.all<double>(0)),
+      child: Card(
+        elevation: 2,
+        child: SizedBox(
+          height: 70,
+          child: Center(
+            child: ListTile(
+              title: Text(name!,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20)),
+              leading: const Icon(Icons.restaurant, size: 36),
+              trailing: const Icon(Icons.arrow_right, size: 40, color: Color(0xFF366C00)),
             ),
           ),
         ),
